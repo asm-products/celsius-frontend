@@ -6,4 +6,5 @@ platforms/
 plugins/
 www/lib/
 .idea/
+.sass-cache/
 *.DS_Store
