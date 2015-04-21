@@ -4,20 +4,20 @@
     <div>
       <label class="item item-input item-searchbar" >
 
-        <input type="text" placeholder="" style="height: auto;">
+        <input type="text" placeholder="" style="height: auto;" ng-model="searchText">
           <i class="icon  ion-search placeholder-icon app-color"></i>
       </label>
     </div>
   </div>
   <ion-content class="has-subheader">
     <ion-list>
-      <ion-item class="item-avatar item-discover" ng-repeat="playlist in playlists" >
-        <img src="img/profilePlaceholder.png">
-        <h2>Poll title1</h2>
-        <p>User</p>
+      <ion-item class="item-avatar item-discover font-smoothing" collection-repeat="poll in polls | filter:searchText" >
+        <img ng-src="{{poll.image}}">
+        <h2>{{ poll.poll }}</h2>
+        <p>{{poll.user}}</p>
           <div class="distance">
               <i class="icon ion-navigate app-color"></i>
-              &nbsp; &lt;500m
+              &nbsp; &lt;{{poll.distance}}
           </div>
           <div class="linebox"></div>
       </ion-item>

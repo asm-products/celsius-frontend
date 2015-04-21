@@ -12,12 +12,17 @@
     font-size: 16px;
     //font-weight: 500;
     margin-left: 10px;
+    max-width: 70%;
+    height: auto;
+    //text-overflow: clip;
+    white-space: normal;
+
     //color:red;
   }
   p{
     font-size: 14px;
     color: rgb(168,168,168);
-
+    max-width: 70%;
     //font-weight: 100;
     margin-left: 10px;
   }

@@ -8070,10 +8070,14 @@ a.button {
     color: black;
     letter-spacing: 0.125em;
     font-size: 16px;
-    margin-left: 10px; }
+    margin-left: 10px;
+    max-width: 70%;
+    height: auto;
+    white-space: normal; }
   .item-discover p {
     font-size: 14px;
     color: #a8a8a8;
+    max-width: 70%;
     margin-left: 10px; }
   .item-discover .distance {
     font-size: 16px;
