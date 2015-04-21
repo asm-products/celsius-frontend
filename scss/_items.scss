@@ -1,18 +1,44 @@
+.item-searchbar{
+  .placeholder-icon{
+    padding-right: 10px;
+  }
+}
 .item-discover{
 
+  border: none;
   h2{
-    color: rgb(129,129,129);
-    font-size: 20px;
+    color: black;
+    letter-spacing: 0.125em;
+    font-size: 16px;
     //font-weight: 500;
     margin-left: 10px;
     //color:red;
   }
   p{
-    font-size: 16px;
+    font-size: 14px;
     color: rgb(168,168,168);
 
     //font-weight: 100;
     margin-left: 10px;
+  }
+  .distance{
+    font-size: 16px;
+    text-align: right;
+    line-height: $item-distance-height;
+    position: absolute;
+    right:($item-padding/1.5);
+    top: $item-padding;
+    height: $item-distance-height;
+    width: $item-distance-width;
+    color:rgb(168,168,128);
+  }
+  .linebox{
+    position: absolute;
+    bottom: 0;
+    left: $item-avatar-width + ($item-padding * 2);
+    height: 1px;
+    width: 100%;
+    border: 1px solid rgb(214,214,214);
   }
 
 }

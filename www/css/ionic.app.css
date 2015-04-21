@@ -8061,11 +8061,41 @@ a.button {
 .nav-bar-tabs-top .bar {
   background-image: none; }
 
-.item-discover h2 {
-  color: #818181;
-  font-size: 20px;
-  margin-left: 10px; }
-.item-discover p {
-  font-size: 16px;
-  color: #a8a8a8;
-  margin-left: 10px; }
+.item-searchbar .placeholder-icon {
+  padding-right: 10px; }
+
+.item-discover {
+  border: none; }
+  .item-discover h2 {
+    color: black;
+    letter-spacing: 0.125em;
+    font-size: 16px;
+    margin-left: 10px; }
+  .item-discover p {
+    font-size: 14px;
+    color: #a8a8a8;
+    margin-left: 10px; }
+  .item-discover .distance {
+    font-size: 16px;
+    text-align: right;
+    line-height: 50px;
+    position: absolute;
+    right: 10.66667px;
+    top: 16px;
+    height: 50px;
+    width: 100px;
+    color: #a8a880; }
+  .item-discover .linebox {
+    position: absolute;
+    bottom: 0;
+    left: 92px;
+    height: 1px;
+    width: 100%;
+    border: 1px solid #d6d6d6; }
+
+.font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.app-color {
+  color: #ecc336; }

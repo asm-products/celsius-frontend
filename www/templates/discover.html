@@ -1,10 +1,11 @@
-<ion-view view-title="Discover">
+<ion-view view-title="Discover" class="font-smoothing">
   <div class="bar bar-subheader" style="background:rgb(232,232,232);height: auto;;padding: 10px;border-top: 1px solid rgb(129,129.129)">
     <!--<h2 class="title">Sub Header</h2>-->
     <div>
-      <label class="item item-input" >
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search" style="height: auto;">
+      <label class="item item-input item-searchbar" >
+
+        <input type="text" placeholder="" style="height: auto;">
+          <i class="icon  ion-search placeholder-icon app-color"></i>
       </label>
     </div>
   </div>
@@ -12,8 +13,13 @@
     <ion-list>
       <ion-item class="item-avatar item-discover" ng-repeat="playlist in playlists" >
         <img src="img/profilePlaceholder.png">
-        <h2>Poll title</h2>
+        <h2>Poll title1</h2>
         <p>User</p>
+          <div class="distance">
+              <i class="icon ion-navigate app-color"></i>
+              &nbsp; &lt;500m
+          </div>
+          <div class="linebox"></div>
       </ion-item>
     </ion-list>
   </ion-content>

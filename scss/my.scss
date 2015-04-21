@@ -1,2 +1,11 @@
 @import "bar";
 @import "_items";
+
+.font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-color{
+  color:rgb(236,195,54);
+}
