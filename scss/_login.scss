@@ -1,0 +1,20 @@
+.login-container{
+  @include display-flex();
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  align-items: center;
+
+  .login-icon{
+    width: 150px;
+    margin: auto;
+  }
+
+  .login-buttons{
+    width: 100%;
+    padding: 0 50px 30px 50px;
+    .button{
+      color: #000;
+    }
+  }
+}
