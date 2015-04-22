@@ -1,9 +1,9 @@
 .login-container{
   @include display-flex();
-  flex-direction: column;
-  justify-content: space-around;
+  @include flex-direction(column);
+  @include justify-content(space-around);
+  @include align-items(center);
   height: 100%;
-  align-items: center;
 
   .login-icon{
     width: 150px;
