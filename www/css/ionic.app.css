@@ -5618,7 +5618,7 @@ legend {
   margin-bottom: 1.42857;
   padding: 0;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   color: #444;
   font-size: 21px;
   line-height: 2.85714; }
@@ -8129,6 +8129,15 @@ a.button {
     padding: 0 50px 30px 50px; }
     .login-container .login-buttons .button {
       color: #000; }
+
+form .item {
+  border: none; }
+  form .item.item-input {
+    border-bottom: 2px solid #eabc1f;
+    padding-left: 0px; }
+  form .item.item-submit {
+    padding-left: 10%;
+    padding-right: 10%; }
 
 .font-smoothing {
   -webkit-font-smoothing: antialiased;

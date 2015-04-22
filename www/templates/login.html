@@ -1,23 +1,18 @@
-<ion-modal-view>
-  <ion-header-bar>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
+<ion-nav-view title=""> 
   <ion-content scroll="false">  
     <div class="login-container">
       <img class="login-icon" src="../img/icon.png"/>
       <div class="login-buttons">
-        <button class="button button-outline button-block button-energized">
+        <a class="button button-outline button-block button-energized">
           Login with Facebook
-        </button>
-        <button class="button button-outline button-block button-energized">
+        </a>
+        <a class="button button-outline button-block button-energized">
           Login with Twitter
-        </button>
-        <button class="button button-outline button-block button-energized">
+        </a>
+        <a class="button button-outline button-block button-energized" ng-click="openEmailLogin()">
           Login with Email
-        </button>
+        </a>
       </div>
     </div>    
   </ion-content>
-</ion-modal-view>
+</ion-nav-view>

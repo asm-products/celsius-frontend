@@ -1,24 +1,29 @@
 angular.module('starter.controllers', [])
 
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+    })
+
+    .controller('LoginCtrl', function ($scope, $state, $ionicModal, $timeout) {
         // Form data for the login modal
         $scope.loginData = {};
+        $scope.openModal;
 
         // Create the login modal that we will use later
-        $ionicModal.fromTemplateUrl('templates/login.html', {
+        $ionicModal.fromTemplateUrl('templates/login_email.html', {
             scope: $scope
         }).then(function (modal) {
-            $scope.modal = modal;
+            $scope.emailModal = modal;
         });
 
         // Triggered in the login modal to close it
-        $scope.closeLogin = function () {
-            $scope.modal.hide();
+        $scope.closeModal = function () {
+            $scope.openModal.hide();
         };
 
         // Open the login modal
-        $scope.login = function () {
-            $scope.modal.show();
+        $scope.openEmailLogin = function () {
+            $scope.openModal = $scope.emailModal;
+            $scope.emailModal.show();
         };
 
         // Perform the login action when the user submits the login form
@@ -28,7 +33,7 @@ angular.module('starter.controllers', [])
             // Simulate a login delay. Remove this and replace with your login
             // code if using a login system
             $timeout(function () {
-                $scope.closeLogin();
+                $scope.closeModal();
             }, 1000);
         };
     })
