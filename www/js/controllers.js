@@ -33,7 +33,12 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('DiscoverCtrl', function ($scope) {
+    .controller('DiscoverCtrl', ['$scope','$cordovaKeyboard',function ($scope,$cordovaKeyboard) {
+        $scope.scrolling = function(){
+            if (window.cordova && window.cordova.plugins.Keyboard) {
+                $cordovaKeyboard.close();
+            };
+        };
         $scope.polls = [
             {
                 poll: 'Best starbucks coffee?',
@@ -43,7 +48,7 @@ angular.module('starter.controllers', [])
                 distance:'75m'
             },
             {
-                poll: 'Where are we going for lunch today?',
+                poll: 'Where are we going for lunch today,haan tell me where,just tell me yaar?',
                 id: 2,
                 user: "Islam M",
                 distance:'100m',
@@ -149,7 +154,7 @@ angular.module('starter.controllers', [])
             }
 
         ];
-    })
+    }])
 
     .controller('PlaylistCtrl', function ($scope, $stateParams) {
     });
