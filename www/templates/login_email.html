@@ -6,13 +6,15 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="doLogin()" class="padding">
+    <form name="emailLoginForm" novalidate ng-submit="doEmailLogin(emailLoginForm.$valid)" class="padding">
       <div class="list">
         <label class="item item-input">
-          <input type="text" placeholder="Email" ng-model="loginData.email">
+          <input type="email" placeholder="Email" ng-model="loginData.email" required/>
+          <i class="icon ion-close-circled assertive input-invalid-icon"></i>
         </label>
         <label class="item item-input">
-          <input type="password" placeholder="Password" ng-model="loginData.password">
+          <input type="password" placeholder="Password" ng-model="loginData.password" required/>
+          <i class="icon ion-close-circled assertive input-invalid-icon"></i>
         </label>
         <label class="item item-submit">
           <button class="button button-block button-energized" type="submit">Sign in</button>

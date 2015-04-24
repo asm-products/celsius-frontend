@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
         $ionicModal.fromTemplateUrl('templates/login_email.html', {
             scope: $scope
         }).then(function (modal) {
-            $scope.emailModal = modal;
+            $scope.emailModal = modal;  
         });
 
         // Triggered in the login modal to close it
@@ -27,8 +27,10 @@ angular.module('starter.controllers', [])
         };
 
         // Perform the login action when the user submits the login form
-        $scope.doLogin = function () {
+        $scope.doEmailLogin = function (isValid) {
             console.log('Doing login', $scope.loginData);
+            if(!isValid)
+                return;
 
             // Simulate a login delay. Remove this and replace with your login
             // code if using a login system

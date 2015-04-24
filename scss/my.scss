@@ -10,3 +10,33 @@
 .app-color{
   color:rgb(236,195,54);
 }
+
+//Input validation
+.input-invalid-icon{
+  // color: #000;
+  // background-color: $assertive;
+  visibility: hidden;
+}
+
+input{
+  &.ng-invalid.ng-dirty{
+    & + .input-invalid-icon{
+      visibility: visible; 
+    }
+  }
+  &.ng-valid{
+    & + .input-invalid-icon{
+      visibility: hidden; 
+    }
+  }
+}
+
+form.ng-submitted{
+  input{
+    &.ng-invalid{
+      & + .input-invalid-icon{
+        visibility: visible; 
+      }
+    }
+  }
+}

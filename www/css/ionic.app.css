@@ -8145,3 +8145,14 @@ form .item {
 
 .app-color {
   color: #ecc336; }
+
+.input-invalid-icon {
+  visibility: hidden; }
+
+input.ng-invalid.ng-dirty + .input-invalid-icon {
+  visibility: visible; }
+input.ng-valid + .input-invalid-icon {
+  visibility: hidden; }
+
+form.ng-submitted input.ng-invalid + .input-invalid-icon {
+  visibility: visible; }
