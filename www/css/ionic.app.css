@@ -8149,6 +8149,7 @@ form .item {
   height: 60px;
   bottom: 30px;
   left: 50%;
+  -webkit-transform: translate(-50%, 0%);
   transform: translate(-50%, 0%);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   line-height: 60px;
@@ -8165,6 +8166,7 @@ form .item {
     color: #FFF; }
 
 .btn-round.ng-hide {
+  -webkit-transform: translate(-50%, 100%);
   transform: translate(-50%, 100%); }
 
 .animate-enter.animate-enter-active {
