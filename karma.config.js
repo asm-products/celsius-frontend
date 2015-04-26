@@ -18,16 +18,16 @@ module.exports = function(config) {
 
       'www/lib/ionic/js/ionic.bundle.js',
       'www/lib/angular-mocks/angular-mocks.js',
-      'www/app/**/*.js',
-        'www/js/ngCordova/ng-cordova.min.js',
-      'tests/*.js'
+      'www/lib/angular-resource/angular-resource.js'
+      'www/js/*.js',
+      'www/js/ngCordova/ng-cordova.min.js',
+      'tests/unit/**/*.js'
     ],
 
 
     // list of files to exclude
     exclude: [
         'www/app/app-init.js'
-
     ],
 
 
@@ -62,8 +62,8 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    // browsers: ['Chrome'],
     browsers: ['Chrome'],
-    //browsers: ['PhantomJS'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

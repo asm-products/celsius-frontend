@@ -6,7 +6,7 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <form name="emailLoginForm" novalidate ng-submit="doEmailLogin(emailLoginForm.$valid)" class="padding">
+    <form name="emailLoginForm" novalidate ng-submit="doEmailLogin(emailLoginForm.$valid)" class="padding" ng-show="!isSigningUp">
       <div class="list">
         <label class="item item-input">
           <input type="email" placeholder="Email" ng-model="loginData.email" required/>
@@ -19,6 +19,27 @@
         <label class="item item-submit">
           <button class="button button-block button-energized" type="submit">Sign in</button>
         </label>
+        <button type="button" class="button button-block button-clear button-balanced" ng-click="isSigningUp = true">Create an account</button>
+      </div>
+    </form>
+    <form name="emailSignUpForm" novalidate ng-submit="doEmailLogin(emailSignUpForm.$valid)" class="padding" ng-show="isSigningUp">
+      <div class="list">
+        <label class="item item-input">
+          <input type="email" placeholder="Email" ng-model="loginData.email" required/>
+          <i class="icon ion-close-circled assertive input-invalid-icon"></i>
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="Password" ng-model="loginData.password" required/>
+          <i class="icon ion-close-circled assertive input-invalid-icon"></i>
+        </label>
+        <label class="item item-input" ng-show="isSigningUp">
+          <input type="password" placeholder="Confirm Password" ng-model="loginData.password_confirmation" compare-to="loginData.password" required/>
+          <i class="icon ion-close-circled assertive input-invalid-icon"></i>
+        </label>
+        <label class="item item-submit">
+          <button class="button button-block button-energized" type="submit">Create Account</button>
+        </label>
+        <button type="button" class="button button-block button-clear button-balanced" ng-click="isSigningUp = false; loginData.password_confirmation = undefined;">Login</button>
       </div>
     </form>
   </ion-content>

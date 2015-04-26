@@ -15,7 +15,8 @@
     "shelljs": "^0.3.0",
     "karma": "^0.12.24",
     "karma-chrome-launcher": "^0.1.5",
-    "karma-jasmine": "^0.2.3"
+    "karma-jasmine": "^0.2.3",
+    "karma-phantomjs-launcher": "^0.1.4"
   },
   "cordovaPlugins": [
     "org.apache.cordova.device",

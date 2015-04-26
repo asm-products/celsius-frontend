@@ -3,10 +3,11 @@ angular.module('starter.controllers', [])
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
     })
 
-    .controller('LoginCtrl', function ($scope, $state, $ionicModal, $timeout) {
+    .controller('LoginCtrl', function ($scope, $ionicModal, $timeout) {
         // Form data for the login modal
         $scope.loginData = {};
         $scope.openModal;
+        $scope.isLoggingIn = true;
 
         // Create the login modal that we will use later
         $ionicModal.fromTemplateUrl('templates/login_email.html', {
