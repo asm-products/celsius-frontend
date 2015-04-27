@@ -41,40 +41,79 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('DiscoverCtrl', function ($scope) {
+    .controller('DiscoverCtrl', ['$scope', '$cordovaKeyboard','$timeout', '$ionicScrollDelegate', function ($scope, $cordovaKeyboard,$timeout, $ionicScrollDelegate) {
+        var contentViewDelegate = $ionicScrollDelegate.$getByHandle('poll-list');
+        var lastScrollPositionY = 0;
+
+        function contentIsScrollingUp(currentPosition) {
+
+            return currentPosition <= 0 ? false : (lastScrollPositionY - currentPosition > 0);
+        }
+
+        function contentIsScrollingDown(currentPosition) {
+            return currentPosition <= 0 ? false : (lastScrollPositionY - currentPosition < 0);
+        }
+
+
+        function getScrollPositionY() {
+            return contentViewDelegate ? contentViewDelegate.getScrollPosition().top : 0;
+        }
+
+        function setAddPollButtonHidden(hidden) {
+            $timeout(function(){
+                $scope.isAddButtonHidden = hidden;
+            },0);
+        };
+
+        function updateAddPollButton() {
+            var thisPosition = getScrollPositionY();
+            if (contentIsScrollingUp(thisPosition)) {
+                setAddPollButtonHidden(false);
+            } else if (contentIsScrollingDown(thisPosition)) {
+                setAddPollButtonHidden(true);
+            }
+            lastScrollPositionY = thisPosition;
+        }
+
+        $scope.scrolling = function () {
+            if (window.cordova && window.cordova.plugins.Keyboard) {
+                $cordovaKeyboard.close();
+            }
+            updateAddPollButton();
+        };
         $scope.polls = [
             {
                 poll: 'Best starbucks coffee?',
                 id: 1,
                 user: "Rajat T",
                 image: "https://gravatar.com/avatar/c4e9d538b393049aac29d7af9ead7d0b?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288",
-                distance:'75m'
+                distance: '75m'
             },
             {
-                poll: 'Where are we going for lunch today?',
+                poll: 'Where are we going for lunch today,haan tell me where,just tell me yaar?',
                 id: 2,
                 user: "Islam M",
-                distance:'100m',
+                distance: '100m',
                 image: "https://gravatar.com/avatar/fa91c6c945c539edb5de46c28e2600fa?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
             {
                 poll: 'Where is happy hour tonight?',
                 id: 3,
                 user: "Gisela",
-                distance:'125m',
+                distance: '125m',
                 image: "https://gravatar.com/avatar/17c1063ccdb14ef29e9c36dc3a1384a5?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
             {
                 poll: 'Best burrito in town?',
                 id: 4,
-                distance:'150m',
+                distance: '150m',
                 user: "Buckstar",
                 image: "https://gravatar.com/avatar/a03f640ab5a3c37bb53277925403da67?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
             {
                 poll: 'Fast & furious worth watching?',
                 id: 5,
-                distance:'500m',
+                distance: '500m',
                 user: "Anthony A",
                 image: "https://gravatar.com/avatar/b87d99b15e2a5bc064e7a0ad44cf1e24?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
@@ -82,20 +121,20 @@ angular.module('starter.controllers', [])
                 poll: 'Where is happy hour tonight?',
                 id: 3,
                 user: "Gisela",
-                distance:'125m',
+                distance: '125m',
                 image: "https://gravatar.com/avatar/17c1063ccdb14ef29e9c36dc3a1384a5?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
             {
                 poll: 'Best burrito in town?',
                 id: 4,
-                distance:'150m',
+                distance: '150m',
                 user: "Buckstar",
                 image: "https://gravatar.com/avatar/a03f640ab5a3c37bb53277925403da67?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
             {
                 poll: 'Fast & furious worth watching?',
                 id: 5,
-                distance:'500m',
+                distance: '500m',
                 user: "Anthony A",
                 image: "https://gravatar.com/avatar/b87d99b15e2a5bc064e7a0ad44cf1e24?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
@@ -104,33 +143,33 @@ angular.module('starter.controllers', [])
                 id: 1,
                 user: "Rajat T",
                 image: "https://gravatar.com/avatar/c4e9d538b393049aac29d7af9ead7d0b?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288",
-                distance:'75m'
+                distance: '75m'
             },
             {
                 poll: 'Where are we going for lunch today?',
                 id: 2,
                 user: "Islam M",
-                distance:'100m',
+                distance: '100m',
                 image: "https://gravatar.com/avatar/fa91c6c945c539edb5de46c28e2600fa?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
             {
                 poll: 'Where is happy hour tonight?',
                 id: 3,
                 user: "Gisela",
-                distance:'125m',
+                distance: '125m',
                 image: "https://gravatar.com/avatar/17c1063ccdb14ef29e9c36dc3a1384a5?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
             {
                 poll: 'Best burrito in town?',
                 id: 4,
-                distance:'150m',
+                distance: '150m',
                 user: "Buckstar",
                 image: "https://gravatar.com/avatar/a03f640ab5a3c37bb53277925403da67?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
             {
                 poll: 'Fast & furious worth watching?',
                 id: 5,
-                distance:'500m',
+                distance: '500m',
                 user: "Anthony A",
                 image: "https://gravatar.com/avatar/b87d99b15e2a5bc064e7a0ad44cf1e24?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
@@ -138,26 +177,26 @@ angular.module('starter.controllers', [])
                 poll: 'Where is happy hour tonight?',
                 id: 3,
                 user: "Gisela",
-                distance:'125m',
+                distance: '125m',
                 image: "https://gravatar.com/avatar/17c1063ccdb14ef29e9c36dc3a1384a5?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
             {
                 poll: 'Best burrito in town?',
                 id: 4,
-                distance:'150m',
+                distance: '150m',
                 user: "Buckstar",
                 image: "https://gravatar.com/avatar/a03f640ab5a3c37bb53277925403da67?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             },
             {
                 poll: 'Fast & furious worth watching?',
                 id: 5,
-                distance:'500m',
+                distance: '500m',
                 user: "Anthony A",
                 image: "https://gravatar.com/avatar/b87d99b15e2a5bc064e7a0ad44cf1e24?d=https%3A%2F%2Fassembly.com%2Fassets%2Fdefault_avatar.png&s=288"
             }
 
         ];
-    })
+    }])
 
     .controller('PlaylistCtrl', function ($scope, $stateParams) {
     });
