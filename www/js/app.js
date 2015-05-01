@@ -4,11 +4,14 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.directives'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.directives', 'starter.services'])
 
 .constant('API_URL', 'https://cors-test.appspot.com/')
-
-.run(function($ionicPlatform) {
+.constant('AUTH_EVENTS', {
+  notAuthenticated: 'auth-not-authenticated',
+  notAuthorized: 'auth-not-authorized'
+})
+.run(function($ionicPlatform, $rootScope, AuthService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,9 +22,21 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    //stateChange event
+    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+      //todo add resource authorization check i.e only poll creator should be able to edit polls
+
+      if (toState.name !== 'app.login' && toState.authRequired && !AuthService.isAuthenticated()){ //Assuming the AuthService holds authentication logic
+        // User isn’t authenticated
+        event.preventDefault(); 
+        $state.transitionTo("app.login");
+      }
+    });
   });
 })
 
+//For each state that requires login, add `authRequired: true`
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 

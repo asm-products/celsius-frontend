@@ -1,9 +1,39 @@
 angular.module('starter.controllers', [])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $ionicHistory, $state, AuthService, AUTH_EVENTS) {
+        $scope.username = AuthService.username();
+         
+        $scope.$on(AUTH_EVENTS.notAuthorized, function(event) {
+            var alertPopup = $ionicPopup.alert({
+              title: 'Unauthorized!',
+              template: 'You are not allowed to access this resource.'
+            });
+        });
+
+        $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+            AuthService.logout();
+            $state.go('login');
+            var alertPopup = $ionicPopup.alert({
+                title: 'Session Lost!',
+                template: 'Sorry, You have to login again.'
+            });
+        });
+
+        $scope.setCurrentUsername = function(name) {
+            $scope.username = name;
+        };
+
+        $scope.logout = function(){
+            AuthService.logout();
+            $scope.setCurrentUsername(undefined);
+            $ionicHistory.nextViewOptions({
+              disableBack: true
+            });
+            $state.go('app.discover', {}, {reload: true, location: 'replace'});
+        }
     })
 
-    .controller('LoginCtrl', function ($scope, $ionicModal, $timeout) {
+    .controller('LoginCtrl',function ($scope, $ionicModal, $ionicHistory, $ionicPopup, $state, AuthService) {
         // Form data for the login modal
         $scope.loginData = {};
         $scope.openModal;
@@ -33,11 +63,23 @@ angular.module('starter.controllers', [])
             if(!isValid)
                 return;
 
-            // Simulate a login delay. Remove this and replace with your login
-            // code if using a login system
-            $timeout(function () {
-                $scope.closeModal();
-            }, 1000);
+            AuthService.loginEmail($scope.loginData)
+                .then(function(data){
+                    //todo go to previous state
+
+                    $scope.closeModal();
+                    $ionicHistory.nextViewOptions({
+                      disableBack: true
+                    });
+                    $state.go('app.discover', {}, {reload: true, location: "replace"});
+                    $scope.setCurrentUsername(data.user.name);
+                }
+                ,function(error){
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Login failed!',
+                        template: 'Please check your credentials!'
+                    });
+                });
         };
     })
 
