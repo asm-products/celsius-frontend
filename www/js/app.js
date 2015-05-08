@@ -8,10 +8,10 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
 
 .constant('API_URL', 'https://cors-test.appspot.com/')
 .constant('FIREBASE_URL', 'https://pollo.firebaseio.com/')
-.constant('AUTH_EVENTS', {
-  notAuthenticated: 'auth-not-authenticated',
-  notAuthorized: 'auth-not-authorized'
-})
+// .constant('AUTH_EVENTS', {
+//   notAuthenticated: 'auth-not-authenticated',
+//   notAuthorized: 'auth-not-authorized'
+// })
 .run(function($ionicPlatform, $rootScope, AuthService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
