@@ -113,6 +113,7 @@ angular.module('starter.controllers', [])
             }
             updateAddPollButton();
         };
+        
         $scope.polls = [
             {
                 poll: 'Best starbucks coffee?',
