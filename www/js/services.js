@@ -1,86 +1,72 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['firebase'])
 
-.service('AuthService', function($q, $http, API_URL){
-  var userInfo;
-  var LOCAL_USER_INFO_KEY = 'userInfo';
-  var isAuthenticated = false;
+.service('AuthService', function($q, $firebaseAuth, FIREBASE_URL){
+  var ref = new Firebase(FIREBASE_URL);
+  var Auth = $firebaseAuth(ref);
+  var authData;
 
-  function loadUserCredentials() {
-    var info = angular.fromJson(window.localStorage.getItem(LOCAL_USER_INFO_KEY));
-    if (info && info.token) {
-      useCredentials(info);
-    }
+  function ucfirst (str) {
+    // inspired by: http://kevin.vanzonneveld.net
+    str += '';
+    var f = str.charAt(0).toUpperCase();
+    return f + str.substr(1);
+  }
+  function firstPartOfEmail(email) {
+    return ucfirst(email.substr(0, email.indexOf('@'))||'');
   }
 
-  function storeUserCredentials(info) {
-    window.localStorage.setItem(LOCAL_USER_INFO_KEY, angular.toJson(info));
-    useCredentials(info);
+  function loginEmail(loginData, resolve, reject){
+    Auth.$authWithPassword({email: loginData.email, password: loginData.password})
+      .then(function(user){
+        user.username = firstPartOfEmail(user.password.email);
+        resolve(user);
+      })
+      .catch(function(error){
+        reject(error);
+      });
   }
 
-  function useCredentials(info) {
-    userInfo = info
-    isAuthenticated = true;
- 
-    // Set the token as header for your requests!
-    $http.defaults.headers.common['X-Auth-Token'] = info.token;
-  }
-
-  function destroyUserCredentials() {
-    userInfo = undefined;
-    isAuthenticated = false;
-    $http.defaults.headers.common['X-Auth-Token'] = undefined;
-    window.localStorage.removeItem(LOCAL_USER_INFO_KEY);
-  }
-
-  var loginEmail = function(loginData) {
+  var authEmail = function(loginData) {
     return $q(function(resolve, reject) {
       if(loginData.email && loginData.password){
         if(loginData.password_confirmation){
-          method = '/signup';
+          Auth.$createUser({email: loginData.email, password: loginData.password})
+            .then(function(user){
+              loginEmail(loginData, resolve, reject);
+            })
+            .catch(function(error){
+              reject(error);
+            });
         }else{
-          method = '/login';
+          loginEmail(loginData, resolve, reject);
         }
-
-        //todo add call to login/signup api and store in sessionstorage
-        // $http.post(API_URL+method, loginData)
-        //   .then(function(result){
-        //     userInfo = {
-        //       accessToken: result.data.access_token,
-        //       user: result.data.user
-        //     };
-
-        //     //sessionStore
-        //     deferred.resolve(userInfo);
-        //   }, function(error){
-        //     deferred.reject(error);
-        //   });
-        storeUserCredentials({token: 'someAccessToken', user: {name: 'Jane Bob'}});
-        resolve(userInfo);
       }else
         reject('Login Failed.');
     });
   }
 
   var logout = function() {
-    destroyUserCredentials();
+    Auth.$unauth();
   };
 
   var isAuthorized = function(resource) {
-    //todo add auth checing i.e only poll owner should be able to edit poll
+    //todo add auth checking i.e only poll owner should be able to edit poll
     return isAuthenticated;
   };
 
-  loadUserCredentials();
+  Auth.$onAuth(function(data){
+    authData = data;
+  });
 
   return {
-    loginEmail: loginEmail,
+    authEmail: authEmail,
     logout: logout,
     isAuthorized: isAuthorized,
     isAuthenticated: function() {
-      return isAuthenticated;
+      return authData != null;
     },
     username: function() {
-      return (userInfo ? userInfo.user.name : '');
+      return (authData ? firstPartOfEmail(authData.password.email) : '');
     }
   }
 })

@@ -2,22 +2,6 @@ angular.module('starter.controllers', [])
 
     .controller('AppCtrl', function ($scope, $ionicModal, $ionicHistory, $state, AuthService, AUTH_EVENTS) {
         $scope.username = AuthService.username();
-         
-        $scope.$on(AUTH_EVENTS.notAuthorized, function(event) {
-            var alertPopup = $ionicPopup.alert({
-              title: 'Unauthorized!',
-              template: 'You are not allowed to access this resource.'
-            });
-        });
-
-        $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
-            AuthService.logout();
-            $state.go('login');
-            var alertPopup = $ionicPopup.alert({
-                title: 'Session Lost!',
-                template: 'Sorry, You have to login again.'
-            });
-        });
 
         $scope.setCurrentUsername = function(name) {
             $scope.username = name;
@@ -33,7 +17,7 @@ angular.module('starter.controllers', [])
         }
     })
 
-    .controller('LoginCtrl',function ($scope, $ionicModal, $ionicHistory, $ionicPopup, $state, AuthService) {
+    .controller('LoginCtrl',function ($scope, $ionicModal, $ionicHistory, $ionicPopup, $ionicLoading, $state, AuthService) {
         // Form data for the login modal
         $scope.loginData = {};
         $scope.openModal;
@@ -63,21 +47,27 @@ angular.module('starter.controllers', [])
             if(!isValid)
                 return;
 
-            AuthService.loginEmail($scope.loginData)
+            $ionicLoading.show({
+                template: 'Signing in...'
+            });
+
+            AuthService.authEmail($scope.loginData)
                 .then(function(data){
                     //todo go to previous state
 
                     $scope.closeModal();
+                    $ionicLoading.hide();
                     $ionicHistory.nextViewOptions({
                       disableBack: true
                     });
                     $state.go('app.discover', {}, {reload: true, location: "replace"});
-                    $scope.setCurrentUsername(data.user.name);
+                    $scope.setCurrentUsername(data.username);
                 }
                 ,function(error){
+                    $ionicLoading.hide();
                     var alertPopup = $ionicPopup.alert({
                         title: 'Login failed!',
-                        template: 'Please check your credentials!'
+                        template: error.message
                     });
                 });
         };
