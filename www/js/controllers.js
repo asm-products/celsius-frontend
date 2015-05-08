@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $ionicHistory, $state, AuthService, AUTH_EVENTS) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $ionicHistory, $state, AuthService) {
         $scope.username = AuthService.username();
 
         $scope.setCurrentUsername = function(name) {
