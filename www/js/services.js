@@ -58,7 +58,9 @@ angular.module('starter.services', ['firebase'])
     authData = data;
   });
 
+  //todo add/save to user profile after registering
   return {
+    authData: authData,
     authEmail: authEmail,
     logout: logout,
     isAuthorized: isAuthorized,
@@ -70,6 +72,35 @@ angular.module('starter.services', ['firebase'])
     }
   }
 })
+
+.factory('PollFactory', ['$firebaseObject', 'AuthService', function($firebaseObject, AuthService){
+
+  var ref = new Firebase(FIREBASE_URL+'/polls');
+
+  return {
+    all: function(){
+
+    },
+    save: function(polls){
+    },
+    /**
+      poll = {title, distance}
+    **/
+    newPoll: function(poll){
+      return $q(function(resolve, reject) {
+        if(AuthService.isAuthenticated){
+          ref.child(AuthService.authData).push(poll, function(error){
+            if(error)
+              reject(error.message);
+            else
+              resolve(poll);
+          })
+        }else
+          reject('Not logged in.');
+      });
+    }
+  }
+}])
 
 // .factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
 //   return {
