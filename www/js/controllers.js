@@ -3,6 +3,9 @@ angular.module('starter.controllers', [])
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
     })
 
+    .controller('CreatePollCtrl',function($scope){
+
+    })
     .controller('LoginCtrl', function ($scope, $state, $ionicModal, $timeout) {
         // Form data for the login modal
         $scope.loginData = {};

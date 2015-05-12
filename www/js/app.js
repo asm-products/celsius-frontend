@@ -66,6 +66,15 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
         }
       }
     })
+      .state('app.createPoll', {
+        url: "/discover",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/createPoll.html",
+            controller: 'CreatePollCtrl'
+          }
+        }
+      })
 
   .state('app.single', {
     url: "/playlists/:playlistId",
