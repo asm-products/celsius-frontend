@@ -8172,9 +8172,29 @@ form .item {
 .animate-enter.animate-enter-active {
   opacity: 1; }
 
+.poll.option {
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+  pointer-events: all; }
+  .poll.option .button-energized:before {
+    color: #ecc336; }
+  .poll.option .button-assertive:before {
+    color: red; }
+  .poll.option .option-item .button, .poll.option .option-item input {
+    display: inline-block;
+    vertical-align: middle; }
+
+.range-values > .col {
+  text-align: center; }
+
 .font-smoothing {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
 .app-color {
+  color: #ecc336; }
+
+.bar.bar-clear .button {
   color: #ecc336; }

@@ -1,6 +1,5 @@
 <ion-view view-title="Discover" class="font-smoothing">
-  <div class="bar bar-subheader" style="background:rgb(232,232,232);height: auto;;padding: 10px;border-top: 1px solid rgb(129,129.129)">
-    <!--<h2 class="title">Sub Header</h2>-->
+  <div class="bar bar-subheader" style="background:rgb(232,232,232);height: auto;;padding: 10px;border-top: 1px solid rgb(129,129.129);">
     <div>
       <label class="item item-input item-searchbar" >
 
@@ -25,7 +24,7 @@
 
 
   </ion-content>
-    <div  ng-show="!isAddButtonHidden" class="btn-round "><span>+</span></div>
+    <a ui-sref="app.createPoll"  ng-show="!isAddButtonHidden" class="btn-round "><span>+</span></a>
 
     <!--<div class="add-poll"><i class="icon ion-plus-circled"></i></div>-->
 </ion-view>

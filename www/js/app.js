@@ -58,7 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     }
   })
     .state('app.discover', {
-      url: "/discover",
+      url: "/polls/list",
       views: {
         'menuContent': {
           templateUrl: "templates/discover.html",
@@ -67,7 +67,7 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
       }
     })
       .state('app.createPoll', {
-        url: "/discover",
+        url: "/polls/create",
         views: {
           'menuContent': {
             templateUrl: "templates/createPoll.html",
@@ -86,5 +86,5 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/discover');
+  $urlRouterProvider.otherwise('/app/polls/list');
 });

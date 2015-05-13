@@ -1,0 +1,24 @@
+.poll{
+  &.option{
+    @include user-select(all);
+    pointer-events:all;
+    .button-energized:before{
+      color: $energized;
+    }
+    .button-assertive:before{
+      color:red;
+    }
+    .option-item{
+      .button,input{
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.range-values{
+  >.col{
+    text-align: center;
+  }
+}
