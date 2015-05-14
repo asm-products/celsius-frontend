@@ -105,7 +105,7 @@ angular.module('starter.controllers', [])
                 setAddPollButtonHidden(true);
             }
             lastScrollPositionY = thisPosition;
-        }
+        };
 
         $scope.scrolling = function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -229,6 +229,9 @@ angular.module('starter.controllers', [])
             }
 
         ];
+    }])
+    .controller('PollsCtrl', ['poll', function($scope, $stateParams, poll){
+        $scope.poll = poll;
     }])
 
     .controller('PlaylistCtrl', function ($scope, $stateParams) {

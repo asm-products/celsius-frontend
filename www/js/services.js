@@ -73,11 +73,19 @@ angular.module('starter.services', ['firebase'])
   }
 })
 
-.factory('PollFactory', ['$firebaseObject', 'AuthService', function($firebaseObject, AuthService){
+.factory('PollFactory', ['$firebaseObject', 'AuthService', 'FIREBASE_URL', function($firebaseObject, AuthService, FIREBASE_URL){
 
   var ref = new Firebase(FIREBASE_URL+'/polls');
 
+  var Poll = function(){
+    this.title = '';
+    this.distance = 100;
+  }
+
   return {
+    newPoll: function(){
+      return new Poll();
+    },
     all: function(){
 
     },
@@ -86,7 +94,7 @@ angular.module('starter.services', ['firebase'])
     /**
       poll = {title, distance}
     **/
-    newPoll: function(poll){
+    create: function(poll){
       return $q(function(resolve, reject) {
         if(AuthService.isAuthenticated){
           ref.child(AuthService.authData).push(poll, function(error){

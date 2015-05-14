@@ -75,16 +75,34 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       }
     }
   })
-    .state('app.discover', {
-      url: "/discover",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/discover.html",
-          controller: 'DiscoverCtrl'
-        }
+  .state('app.discover', {
+    url: "/discover",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/discover.html",
+        controller: 'DiscoverCtrl'
       }
-    })
-
+    }
+  })
+  .state('app.polls',{
+    url: "/polls",
+    abstract: true,
+    controller: 'PollsCtrl'
+  })
+  .state('app.polls.new',{
+    url: "/new",
+    views:{
+      'menuContent': {
+        templateUrl: "templates/polls_new.html",
+        controller: 'PollsCtrl'
+      }
+    },
+    resolve: {
+      poll: ['PollFactory', function(PollFactory){
+        return PollFactory.newPoll();
+      }]
+    }
+  })
   .state('app.single', {
     url: "/playlists/:playlistId",
     views: {
