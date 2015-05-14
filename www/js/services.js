@@ -80,6 +80,7 @@ angular.module('starter.services', ['firebase'])
   var Poll = function(){
     this.title = '';
     this.distance = 100;
+    this.options = [];
   }
 
   return {
@@ -91,9 +92,6 @@ angular.module('starter.services', ['firebase'])
     },
     save: function(polls){
     },
-    /**
-      poll = {title, distance}
-    **/
     create: function(poll){
       return $q(function(resolve, reject) {
         if(AuthService.isAuthenticated){

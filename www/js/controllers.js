@@ -16,7 +16,6 @@ angular.module('starter.controllers', [])
             $state.go('app.discover', {}, {reload: true, location: 'replace'});
         }
     })
-
     .controller('LoginCtrl',function ($scope, $ionicModal, $ionicHistory, $ionicPopup, $ionicLoading, $state, AuthService) {
         // Form data for the login modal
         $scope.loginData = {};
@@ -229,9 +228,6 @@ angular.module('starter.controllers', [])
             }
 
         ];
-    }])
-    .controller('PollsCtrl', ['poll', function($scope, $stateParams, poll){
-        $scope.poll = poll;
     }])
 
     .controller('PlaylistCtrl', function ($scope, $stateParams) {

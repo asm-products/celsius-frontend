@@ -2,6 +2,7 @@
 @import "_items";
 @import "_login";
 @import "_discover";
+@import "_createpoll";
 .font-smoothing {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -37,6 +38,14 @@ form.ng-submitted{
       & + .input-invalid-icon{
         visibility: visible; 
       }
+    }
+  }
+}
+
+.bar {
+  &.bar-clear {
+    .button {
+      color: $energized;
     }
   }
 }

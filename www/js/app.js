@@ -12,7 +12,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
 //   notAuthenticated: 'auth-not-authenticated',
 //   notAuthorized: 'auth-not-authorized'
 // })
-.run(function($ionicPlatform, $rootScope, AuthService) {
+.run(function($ionicPlatform, $rootScope, $state, AuthService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -75,8 +75,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       }
     }
   })
+
   .state('app.discover', {
-    url: "/discover",
+    url: "/polls/list",
     views: {
       'menuContent': {
         templateUrl: "templates/discover.html",
@@ -84,25 +85,23 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       }
     }
   })
-  .state('app.polls',{
-    url: "/polls",
-    abstract: true,
-    controller: 'PollsCtrl'
-  })
-  .state('app.polls.new',{
-    url: "/new",
-    views:{
+
+  .state('app.createPoll', {
+    url: "/polls/create",
+    views: {
       'menuContent': {
-        templateUrl: "templates/polls_new.html",
-        controller: 'PollsCtrl'
+        templateUrl: "templates/createPoll.html",
+        controller: 'CreatePollCtrl'
       }
     },
     resolve: {
       poll: ['PollFactory', function(PollFactory){
         return PollFactory.newPoll();
       }]
-    }
+    },
+    authRequired: true
   })
+
   .state('app.single', {
     url: "/playlists/:playlistId",
     views: {
@@ -113,5 +112,5 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/discover');
+  $urlRouterProvider.otherwise('/app/polls/list');
 });
