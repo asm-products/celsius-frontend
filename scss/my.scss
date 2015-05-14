@@ -2,6 +2,7 @@
 @import "_items";
 @import "_login";
 @import "_discover";
+@import "_createpoll";
 .font-smoothing {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,4 +10,12 @@
 
 .app-color{
   color:rgb(236,195,54);
+}
+
+.bar {
+  &.bar-clear {
+    .button {
+      color: $energized;
+    }
+  }
 }
