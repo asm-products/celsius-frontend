@@ -17,21 +17,3 @@ angular.module("starter.directives", [])
     }
   }
 })
-
-.directive('polloRangeSetter', function(){
-  return{
-    require: "ngModel",
-    scope: {
-      poll: '=poll'
-    },
-    templateUrl: 'pollDistanceSetter.html',
-    link: function(scope, element, attributes, ngModel){
-      // ngModel.$validators.validRange = function(modelValue){
-      //   return (100 <= modelValue && modelValue <= 1000); 
-      // }
-      // scope.$watch("poll.distance", function(){
-      //   ngModel.$validate()
-      // })
-    }
-  }
-})

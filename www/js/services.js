@@ -60,7 +60,9 @@ angular.module('starter.services', ['firebase'])
 
   //todo add/save to user profile after registering
   return {
-    authData: authData,
+    getData: function(){
+      return authData;
+    },
     authEmail: authEmail,
     logout: logout,
     isAuthorized: isAuthorized,
@@ -73,14 +75,18 @@ angular.module('starter.services', ['firebase'])
   }
 })
 
-.factory('PollFactory', ['$firebaseObject', 'AuthService', 'FIREBASE_URL', function($firebaseObject, AuthService, FIREBASE_URL){
+.factory('PollFactory', ['$q', '$firebaseObject', '$firebaseArray', 'AuthService', 'FIREBASE_URL', function($q, $firebaseObject, $firebaseArray, AuthService, FIREBASE_URL){
 
   var ref = new Firebase(FIREBASE_URL+'/polls');
 
   var Poll = function(){
     this.title = '';
-    this.distance = 100;
-    this.options = [];
+    this.range = 100;
+    this.answers = [];
+  }
+
+  Poll.prototype.save = function(){
+
   }
 
   return {
@@ -94,13 +100,15 @@ angular.module('starter.services', ['firebase'])
     },
     create: function(poll){
       return $q(function(resolve, reject) {
-        if(AuthService.isAuthenticated){
-          ref.child(AuthService.authData).push(poll, function(error){
-            if(error)
-              reject(error.message);
-            else
-              resolve(poll);
+        if(AuthService.isAuthenticated()){
+          poll.owner_id = AuthService.getData().uid;
+          pollId = $firebaseArray(ref).$add(poll).then(function(ref){
+            resolve($firebaseObject(ref));
+          }, function(error){
+            reject(error);
           })
+
+          //TODO use UserProfile service to add this poll to user's list of polls
         }else
           reject('Not logged in.');
       });

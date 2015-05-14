@@ -4,73 +4,76 @@
         <ion-nav-back-button class="button button-clear "><i class="icon ion-ios7-arrow-back"></i> Back
         </ion-nav-back-button>
         <ion-nav-buttons side="right">
-            <button class="button button-clear" ng-click="submit()">Done</button>
-            </button>
+            <input type="submit" class="button button-clear" value="Done" form="pollForm"></input>
         </ion-nav-buttons>
     </ion-nav-bar>
 
     <ion-content  class="create-carpool" style="padding: 0">
+        <form name="pollForm" id="pollForm" novalidate ng-submit="submit(pollForm.$valid)">
+            <ion-list  show-reorder="true">
 
-        <ion-list  show-reorder="true">
-
-            <div class="row range-values">
-                <div class="col">
-                    100m
+                <div class="row range-values">
+                    <div class="col">
+                        100m
+                    </div>
+                    <div class="col">
+                        300m
+                    </div>
+                    <div class="col">
+                        500m
+                    </div>
+                    <div class="col">
+                        700m
+                    </div>
+                    <div class="col">
+                        1000m
+                    </div>
                 </div>
-                <div class="col">
-                    300m
-                </div>
-                <div class="col">
-                    500m
-                </div>
-                <div class="col">
-                    700m
-                </div>
-                <div class="col">
-                    1000m
-                </div>
-            </div>
 
-            <div class="item range range-energized poll option" style="border: none" >
+                <div class="item range range-energized poll option" style="border: none" >
 
 
 
-                <input ng-model="data.rangeValue" type="range" name="time" min="0" max="4"
-                       value="{{ data.rangeValue }}">
-            </div>
-
-
-            <div class="item item-divider">
-                Question
-            </div>
-
-            <label class="item item-input poll option">
-                <textarea placeholder="Poll description" rows="2" style="font-size: 1.5em;line-height: 1.5em"></textarea>
-            </label>
-            <div class="item item-divider">
-                Options
-            </div>
-
-            <ion-item ng-repeat="item in items" class="poll option">
-                <div class="option-item">
-                    <a ng-click="removeOption($index)"  class="button button-inline icon-left ion-ios-minus button-icon button-assertive"></a>
-                    <input   type="text" placeholder="option">
+                    <input ng-model="data.rangeValue" ng-model-options="{ getterSetter: true }" type="range" name="distance" min="0" max="4">
                 </div>
 
 
+                <div class="item item-divider">
+                    Question
+                </div>
 
-                <ion-reorder-button class="ion-navicon"
-                                    on-reorder="moveItem(item, $fromIndex, $toIndex)">
-                </ion-reorder-button>
-            </ion-item>
+                <label class="item item-input poll option">
+                    <textarea placeholder="Poll description" rows="2" style="font-size: 1.5em;line-height: 1.5em" ng-model="poll.title" required></textarea>
+                    <i class="icon ion-close-circled assertive input-invalid-icon"></i>
+                </label>
+                <div class="item item-divider">
+                    Options
+                </div>
 
-            <ion-item class="poll option">
-                    <a ng-click="addOption()" class="button icon-left ion-ios-plus button-icon button-energized">add</a>
+                <ion-item ng-repeat="answer in poll.answers" class="poll option">
+                    <div class="option-item">
+                        <a ng-click="removeOption($index)"  class="button button-inline icon-left ion-ios-minus button-icon button-assertive"></a>
+                        <input   type="text" placeholder="option" ng-model="answer.value" name="answers[{{ $index }}]" required>
+                        <i class="icon ion-close-circled assertive input-invalid-icon"></i>
+                    </div>
 
-                </ion-reorder-button>
-            </ion-item>
 
-        </ion-list>
+
+                    <ion-reorder-button class="ion-navicon" on-reorder="moveItem(answer, $fromIndex, $toIndex)">
+                    </ion-reorder-button>
+                </ion-item>
+
+                <!-- TODO create better validation for having at least one option -->
+                <input ng-show="false" type="number" ng-model="poll.answers.length" min="1"/>
+                <i class="icon ion-close-circled assertive input-invalid-icon"></i>
+                <ion-item class="poll option">
+                        <a ng-click="addOption()" class="button icon-left ion-ios-plus button-icon button-energized">add</a>
+
+                    </ion-reorder-button>
+                </ion-item>
+
+            </ion-list>
+        </form>
     </ion-content>
 
 

@@ -19,7 +19,7 @@
   visibility: hidden;
 }
 
-input{
+input, textarea{
   &.ng-invalid.ng-dirty{
     & + .input-invalid-icon{
       visibility: visible; 
@@ -33,7 +33,7 @@ input{
 }
 
 form.ng-submitted{
-  input{
+  input, textarea{
     &.ng-invalid{
       & + .input-invalid-icon{
         visibility: visible; 
