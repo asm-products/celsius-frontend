@@ -8199,12 +8199,12 @@ form .item {
 .input-invalid-icon {
   visibility: hidden; }
 
-input.ng-invalid.ng-dirty + .input-invalid-icon {
+input.ng-invalid.ng-dirty + .input-invalid-icon, textarea.ng-invalid.ng-dirty + .input-invalid-icon {
   visibility: visible; }
-input.ng-valid + .input-invalid-icon {
+input.ng-valid + .input-invalid-icon, textarea.ng-valid + .input-invalid-icon {
   visibility: hidden; }
 
-form.ng-submitted input.ng-invalid + .input-invalid-icon {
+form.ng-submitted input.ng-invalid + .input-invalid-icon, form.ng-submitted textarea.ng-invalid + .input-invalid-icon {
   visibility: visible; }
 
 .bar.bar-clear .button {
