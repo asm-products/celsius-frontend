@@ -8189,6 +8189,13 @@ form .item {
 .range-values > .col {
   text-align: center; }
 
+#reportButton {
+  font-size: 11px; }
+  #reportButton i:before {
+    font-size: 11px !important; }
+  #reportButton .icon {
+    color: #ef473a; }
+
 .font-smoothing {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
@@ -8208,4 +8215,6 @@ form.ng-submitted input.ng-invalid + .input-invalid-icon, form.ng-submitted text
   visibility: visible; }
 
 .bar.bar-clear .button {
+  color: #ecc336; }
+.bar .back-button .icon {
   color: #ecc336; }

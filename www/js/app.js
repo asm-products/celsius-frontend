@@ -102,6 +102,25 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     authRequired: true
   })
 
+  .state('app.showPoll', {
+    url: "/polls/:pollId",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/showPoll.html",
+        controller: 'ShowPollCtrl'
+      }
+    },
+    resolve: {
+      poll: ['PollFactory', function(PollFactory){
+        return {
+          poll: 'Where is happy hour tonight?',
+          options: ['FarSide', 'NearSide', 'Hometown' ]
+        }
+      }]
+    },
+    authRequired: true
+  })
+
   .state('app.single', {
     url: "/playlists/:playlistId",
     views: {

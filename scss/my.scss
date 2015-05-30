@@ -3,6 +3,7 @@
 @import "_login";
 @import "_discover";
 @import "_createpoll";
+@import "_showpoll";
 .font-smoothing {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -45,6 +46,11 @@ form.ng-submitted{
 .bar {
   &.bar-clear {
     .button {
+      color: $energized;
+    }
+  }
+  .back-button{
+    .icon {
       color: $energized;
     }
   }

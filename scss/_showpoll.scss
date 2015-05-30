@@ -1,0 +1,17 @@
+#pollView{
+  #pollOptions{
+    .poll-option{
+
+    }
+  }
+}
+
+#reportButton{
+  i:before {
+    font-size: $font-size-small !important;
+  }
+  .icon{
+    color: $assertive;
+  }
+  font-size: $font-size-small;
+}

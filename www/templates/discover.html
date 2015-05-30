@@ -10,7 +10,7 @@
   </div>
   <ion-content has-bouncing="false" delegate-handle="poll-list"  class="has-subheader" on-scroll="scrolling()">
     <ion-list>
-      <ion-item class="item-avatar item-discover font-smoothing" collection-repeat="poll in polls | filter:searchText" >
+      <ion-item class="item-avatar item-discover font-smoothing" collection-repeat="poll in polls | filter:searchText" href="#/app/polls/{{poll.id}}" >
         <img ng-src="{{poll.image}}">
         <h2>{{ poll.poll }}</h2>
         <p>{{poll.user}}</p>

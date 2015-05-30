@@ -230,5 +230,9 @@ angular.module('starter.controllers', [])
         ];
     }])
 
+    .controller("ShowPollCtrl", ['$scope', 'poll', function($scope, poll){
+        $scope.poll = poll;
+    }])
+
     .controller('PlaylistCtrl', function ($scope, $stateParams) {
     });
